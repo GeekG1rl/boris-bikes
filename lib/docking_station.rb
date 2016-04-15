@@ -20,10 +20,8 @@ class DockingStation
       if bike.working? == true
         return @bikes.delete_at(i)
       end
-      raise "Bike is broken" if @bikes.last.working? == false
     end
-    @bikes.pop
-    #use apprendice injection (for next step)
+    raise "All bikes are broken"
   end
 
   private

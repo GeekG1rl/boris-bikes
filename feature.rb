@@ -89,10 +89,7 @@ empty_stn = DockingStation.new
 bike5 = Bike.new
 bike5.report_broken
 empty_stn.dock(bike5)
-if empty_stn.release_bike == bike5
-	raise "shouldn't release broken bike" 
-end
-
+raise "shouldn't release broken bike" unless empty_stn.release_bike != bike5
 
 
 

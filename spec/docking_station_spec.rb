@@ -18,12 +18,22 @@ let(:bike) { Bike.new }
     end
 
     it "will only release a working bike" do
-      bike1 = Bike.new
-      bike2 = Bike.new
-      subject.dock(bike1)
+      bike1 = Bike.new #working
+      bike2 = Bike.new #broken
       bike2.report_broken
       subject.dock(bike2)
+      subject.dock(bike1)
       expect(subject.release_bike).to eq bike1
+    end
+
+    it "raises an error when all bikes are broken" do
+     bike1 = Bike.new
+     bike2 = Bike.new
+     bike1.report_broken
+     bike2.report_broken
+     subject.dock(bike1)
+     subject.dock(bike2)
+     expect{subject.release_bike}.to raise_error("All bikes are broken")
     end
   end
 
