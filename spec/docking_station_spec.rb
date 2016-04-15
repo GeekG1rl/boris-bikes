@@ -3,10 +3,11 @@ require 'docking_station'
 require 'rspec/expectations' #Always include this to be able to use rspec/expectations (eg. expect{})
 
 describe DockingStation do
-let(:bike) { double(:bike) }
+#let(:bike) { double(:bike) }
 
   it "is a working bike" do #this check that it works with the 'Bike' class
-    allow(bike).to receive(:working?).and_return(true)
+#    allow(bike).to receive(:working?).and_return(true)
+    bike = double(:working? => true)
     expect(bike.working?).to eq true #double needed
   end
 
