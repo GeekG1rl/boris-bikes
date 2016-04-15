@@ -17,10 +17,13 @@ let(:bike) { Bike.new }
       expect{subject.release_bike}.to raise_error("No bikes left")
     end
 
-    it "won't release a broken bike" do
-      bike.report_broken
-      subject.dock(bike)
-      expect{subject.release_bike}.to raise_error("Bike is broken")
+    it "will only release a working bike" do
+      bike1 = Bike.new
+      bike2 = Bike.new
+      subject.dock(bike1)
+      bike2.report_broken
+      subject.dock(bike2)
+      expect(subject.release_bike).to eq bike1
     end
   end
 
