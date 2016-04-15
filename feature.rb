@@ -77,9 +77,40 @@ raise "cant hold more than one bike." unless empty_stn.bikes.count > 1
 
 empty_stn = DockingStation.new
 bike4 = Bike.new
-bike.report_broken
-bike.broken?
-station.dock(bike)
+bike4.report_broken
+bike4.working?
+empty_stn.dock(bike4)
+
+# As a maintainer of the system,
+# So that I can manage broken bikes and not disappoint users,
+# I'd like docking stations not to release broken bikes.
+
+empty_stn = DockingStation.new
+bike5 = Bike.new
+bike5.report_broken
+empty_stn.dock(bike5)
+if empty_stn.release_bike == bike5
+	raise "shouldn't release broken bike" 
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

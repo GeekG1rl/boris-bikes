@@ -16,6 +16,11 @@ let(:bike) { Bike.new }
     it "raises an error when no bikes available" do
       expect{subject.release_bike}.to raise_error("No bikes left")
     end
+
+    it "won't release a broken bike" do
+      subject.dock(bike.report_broken)
+      expect{subject.release_bike}.to raise_error("Bike is broken")
+    end
   end
 
   describe "#dock" do
@@ -54,3 +59,25 @@ let(:bike) { Bike.new }
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
