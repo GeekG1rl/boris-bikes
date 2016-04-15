@@ -91,7 +91,9 @@ bike5.report_broken
 empty_stn.dock(bike5)
 raise "shouldn't release broken bike" unless empty_stn.release_bike != bike5
 
-
+# As a maintainer of the system,
+# So that I can manage broken bikes and not disappoint users,
+# I'd like docking stations to accept returning bikes (broken or not).
 
 
 

@@ -6,6 +6,7 @@ describe DockingStation do
 let(:bike) { double(:bike) }
 
   it "is a working bike" do #this check that it works with the 'Bike' class
+    allow(bike).to receive(:working?).and_return(true)
     expect(bike.working?).to eq true #double needed
   end
 
@@ -20,7 +21,8 @@ let(:bike) { double(:bike) }
     it "will only release a working bike" do
       bike1 = double(:bike) #working    #double needed
       bike2 = double(:bike) #broken     #double needed
-      bike2.report_broken          #double needed
+      allow(bike1).to receive(:working?).and_return(true)
+      allow(bike2).to receive(:working?).and_return(false)
       subject.dock(bike2)
       subject.dock(bike1)
       expect(subject.release_bike).to eq bike1
@@ -29,8 +31,8 @@ let(:bike) { double(:bike) }
     it "raises an error when all bikes are broken" do
      bike1 = double(:bike)              #double needed
      bike2 = double(:bike)              #double needed
-     bike1.report_broken              #double needed
-     bike2.report_broken              #double needed
+     allow(bike1).to receive(:working?).and_return(false)
+     allow(bike2).to receive(:working?).and_return(false)
      subject.dock(bike1)
      subject.dock(bike2)
      expect{subject.release_bike}.to raise_error("All bikes are broken")
